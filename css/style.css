@@ -1,0 +1,357 @@
+:root {
+    --primary: #3b82f6;
+    --secondary: #64748b;
+    --danger: #ef4444;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --border: #e2e8f0;
+    --food: #f97316;
+    --transport: #8b5cf6;
+    --fun: #ec4899;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+    --primary: #60a5fa;
+    --secondary: #94a3b8;
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f1f5f9;
+    --border: #334155;
+    --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.balance-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.balance-card h2 {
+    font-size: 0.9rem;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+#totalSpent {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.limit-warning {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--warning);
+}
+
+section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.limit-setting {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.limit-setting input {
+    flex: 1;
+    padding: 0.5rem;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pieChart {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+.transaction-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.item-info h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+}
+
+.item-meta {
+    font-size: 0.8rem;
+    color: var(--secondary);
+}
+
+.item-amount {
+    text-align: right;
+}
+
+.amount {
+    font-weight: 700;
+    color: var(--danger);
+}
+
+.delete-btn {
+    background: transparent;
+    color: var(--danger);
+    border: none;
+    font-size: 1rem;
+    padding: 0.3rem;
+    margin-left: 0.5rem;
+    width: auto;
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--secondary);
+    font-style: italic;
+    padding: 1rem;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-btn {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--secondary);
+}
+
+.monthly-category {
+    margin: 0.8rem 0;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+/* --------------------------------------------------
+   DROPDOWN KATEGORI CUSTOM + ICON HAPUS
+   (<select> bawaan disembunyikan, diganti menu <div>
+   supaya tiap kategori custom bisa punya tombol hapus)
+-------------------------------------------------- */
+.category-select-hidden {
+    display: none !important;
+}
+
+.cat-dropdown {
+    position: relative;
+}
+
+.cat-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 500;
+    text-align: left;
+}
+
+.cat-chevron {
+    color: var(--secondary);
+    font-size: 0.85rem;
+}
+
+.cat-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 60;
+}
+
+.cat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--text);
+}
+
+.cat-item:last-child {
+    border-bottom: none;
+}
+
+.cat-item:hover {
+    background: var(--bg);
+}
+
+.cat-check {
+    width: 1.2rem;
+    flex: 0 0 auto;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.cat-label {
+    flex: 1;
+}
+
+.cat-del-btn {
+    width: auto;
+    flex: 0 0 auto;
+    background: transparent;
+    color: var(--danger);
+    border: none;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.3rem 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cat-del-btn:hover {
+    background: rgba(239, 68, 68, 0.12);
+}

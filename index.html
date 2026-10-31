@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense & Budget Visualizer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header & Total Balance -->
+        <header>
+            <h1>💰 Expense Tracker</h1>
+            <div class="balance-card">
+                <h2>Total Spent</h2>
+                <p id="totalSpent">Rp 0</p>
+                <div class="limit-warning" id="limitWarning"></div>
+            </div>
+        </header>
+
+        <!-- Form Input -->
+        <section class="form-section">
+            <h3>Add Transaction</h3>
+            <form id="transactionForm">
+                <div class="form-group">
+                    <label for="itemName">Item Name</label>
+                    <input type="text" id="itemName" placeholder="e.g., Lunch" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Amount (Rp)</label>
+                    <input type="number" id="amount" min="1" placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <!-- Select asli disembunyikan: tetap jadi sumber nilai form,
+                         tapi tampilannya diganti dropdown custom di bawah
+                         supaya tiap kategori custom bisa punya icon hapus. -->
+                    <select id="category" class="category-select-hidden" aria-hidden="true" tabindex="-1">
+                        <option value="">Select Category</option>
+                        <option value="Food">🍔 Food</option>
+                        <option value="Transport">🚌 Transport</option>
+                        <option value="Fun">🎉 Fun</option>
+                        <option value="custom">➕ Add Custom...</option>
+                    </select>
+                    <div class="cat-dropdown" id="catDropdown">
+                        <button type="button" id="catTrigger" class="cat-trigger" aria-haspopup="listbox" aria-expanded="false">
+                            <span id="catTriggerLabel">Select Category</span>
+                            <span class="cat-chevron">▾</span>
+                        </button>
+                        <div id="catMenu" class="cat-menu hidden" role="listbox"></div>
+                    </div>
+                    <input type="text" id="customCategory" placeholder="New category name" class="hidden">
+                </div>
+
+                <button type="submit">Add Transaction</button>
+            </form>
+        </section>
+
+        <!-- Controls -->
+        <section class="controls">
+            <button id="sortBtn" class="btn-secondary">Sort: Default</button>
+            <button id="monthlyViewBtn" class="btn-secondary">📅 Monthly Summary</button>
+            <button id="themeToggle" class="btn-secondary">🌙 Dark Mode</button>
+            <div class="limit-setting">
+                <label for="spendingLimit">Monthly Limit: </label>
+                <input type="number" id="spendingLimit" placeholder="Set limit">
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="chart-section">
+            <h3>Spending by Category</h3>
+            <div class="chart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Transaction List -->
+        <section class="list-section">
+            <h3>Transactions <span id="listCount">(0)</span></h3>
+            <div id="transactionList" class="transaction-list">
+                <p class="empty-message">No transactions yet. Add your first one above!</p>
+            </div>
+        </section>
+
+        <!-- Monthly Summary Modal -->
+        <div id="monthlyModal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>📅 Monthly Summary</h3>
+                <div id="monthlyContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
